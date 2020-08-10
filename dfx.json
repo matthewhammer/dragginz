@@ -1,0 +1,40 @@
+{
+  "canisters": {
+    "dragginz": {
+      "main": "src/dragginz/main.mo",
+      "type": "motoko"
+    },
+    "dragginz_assets": {
+      "dependencies": [
+        "dragginz"
+      ],
+      "frontend": {
+        "entrypoint": "src/dragginz_assets/public/index.js"
+      },
+      "source": [
+        "src/dragginz_assets/assets",
+        "dist/dragginz_assets/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": ""
+    }
+  },
+  "dfx": "0.6.2",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    },
+    "tungsten": {
+      "providers": [
+        "https://gw.dfinity.network"
+      ],
+      "type": "persistent"
+    }
+  },
+  "version": 1
+}
