@@ -21,12 +21,12 @@ module {
       for (_ in Iter.range(0, 99)) { cycle(); };
       ArrayUtils.last<Nat>(sequence);
     };
-
+ 
     public func sample<A>(arr : [A]) : A { arr[rnd() % arr.len()] };
-
+ 
     func cycle() {
       let fib = (sequence[j] + sequence[k]) % mod;
       sequence := Array.append(ArrayUtils.tail<Nat>(sequence), [fib]);
     };
   };
-};
+}; F 

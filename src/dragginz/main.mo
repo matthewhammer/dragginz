@@ -1,47 +1,36 @@
-import List "mo:base/List";
-import Trie "mo:base/Trie";
-import UUIDLib "./lib/UUID"
+import Hash "mo:base/Hash";
+import TrieMap "mo:base/TrieMap";
 
 actor Rarity {
 
-    public type ID = Text;
-    public type Name = Text;
-
+    public type ID = Word32;
     public type Rarity = {
-        name: Name;
+        name: Text;
+        weighting: Float;
     };
 
-    // Rarity data store.
-    private stable var rarities : Trie.Trie<ID, Rarity> = Trie.empty();
+    public type Equal<ID> = (ID, ID) -> Bool;
+    public type Hash<ID> = ID -> Hash.Hash;
 
+    // Data store
+    var data : TrieMap.TrieMap<ID, Rarity> = TrieMap.TrieMap<ID, Rarity>(Equal, Hash);
+    private stable var nextID : ID = 0;
+
+    // create
     public func create(r : Rarity) : async ID {
-
-        // This line should generate a pseudorandom UUID
-        let id = UUIDLib.NewV4() : ID;
-
-          rarities := Trie.replace(
-          rarities,
-          key(id),
-          eq,
-          ?r,
-        ).0;
-        return id;
+        nextID += 1;
+        data.put(nextID, r);
+        return nextID;
     };
 
     // read
     public query func read(id : ID) : async ?Rarity {
-      let result = Trie.find(rarities, key(id), eq);
-      return result;
+        return data.get(id)
     };
 
-     // Test two ids for equality
-    private func eq(x : ID, y : ID) : Bool {
-        return x == y;
+    // update
+    public query func update(id : ID, r : Rarity) : async Bool {
+        return true
     };
 
-    // Create a trie key from an ID
-    private func key(id : ID) : Trie.Key<ID> {
-        return { hash = id; key = id };
-    };
-
-}
+} 
