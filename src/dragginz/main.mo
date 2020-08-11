@@ -1,10 +1,10 @@
 import List "mo:base/List";
 import Trie "mo:base/Trie";
-import UUIDUtils "./utils/UUID"
+import UUIDLib "./lib/UUID"
 
 actor Rarity {
 
-    public type ID = Word64;
+    public type ID = Text;
     public type Name = Text;
 
     public type Rarity = {
@@ -17,8 +17,7 @@ actor Rarity {
     public func create(r : Rarity) : async ID {
 
         // This line should generate a pseudorandom UUID
-        // UUID.
-        let id = 1 : ID
+        let id = UUIDLib.NewV4() : ID;
 
           rarities := Trie.replace(
           rarities,

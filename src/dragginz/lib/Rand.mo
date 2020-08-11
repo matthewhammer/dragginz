@@ -1,6 +1,6 @@
 import Array "mo:base/Array";
 import Iter "mo:base/Iter";
-import ArrayUtils "./Array";
+import ArrayLib "./Array";
 
 module {
 
