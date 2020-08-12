@@ -1,20 +1,12 @@
-# dragginz
+# DRAGGINZ TODO 
 
-Welcome to your new dragginz project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+## A class or module for ID?
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+Just like in https://github.com/matthewhammer/motoko-crud/blob/master/src/Database.mo it should probably do a lot more, like actually
+hashing its own value
 
-To learn more before you start working with dragginz, see the following documentation available online:
+## Storage
 
-- [Quick Start](https://sdk.dfinity.org/docs/quickstart/quickstart.html)
-- [SDK Developer Tools](https://sdk.dfinity.org/docs/developers-guide/sdk-guide.html)
-- [Motoko Programming Language Guide](https://sdk.dfinity.org/docs/language-guide/motoko.html)
-- [Motoko Language Quick Reference](https://sdk.dfinity.org/docs/language-guide/language-manual.html)
+Do I need one Trie for each Entity?  How is this going to scale, because some of these Entities will always be limited to a handful
+of rows and some will be terabytes of data.
 
-If you want to start working on your project right away, you might want to try the following commands:
-
-```bash
-cd dragginz/
-dfx help
-dfx config --help
-```
