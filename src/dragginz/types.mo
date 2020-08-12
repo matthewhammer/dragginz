@@ -7,14 +7,19 @@ module {
   public type ID = Word32;
 
   // TODO
-  public type Timestamp = Nat;
+  public type TODO = Nat;
 
   // Template Types
   // here we want to define Name as a Text string, but it
   // also has special rules on validation and sanitisation
   //
-  public type Name = Text;
+  public type EntityName = Text;  // generic name for any entity
   public type Description = Text;
+  public type Level = Nat;
+  public type Class = Text;
+  public type Series = Nat;
+  public type UUID = Text;
+  public type Weighting = Nat;
 
   //
   // Compound Types
