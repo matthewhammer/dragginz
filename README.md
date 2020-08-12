@@ -64,3 +64,12 @@ that we wouldn't need within Motoko.  This could easily be over 300 tables by th
 
 Go automatically includes all the files in one directory, and I *still* had to split it into subdirectories.  What is the best way
 to handle this in Motoko?  Don't really fancy one file with 20,000 lines, or even a massive list of includes.
+
+## Reserved Words
+
+We have an Entity called Class.  This was fine in Go because it was upper case, but we're using #class as an identifier which
+
+## ID within Entity
+
+Is there any need to store the ID inside an entity, potentially duplicating data because the ID is the key used in the map.  However
+the key could be a hash, so I guess we should.
