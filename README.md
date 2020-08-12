@@ -1,3 +1,7 @@
+# OLD DRAGGINZ 
+
+Here is an example of how we built the data model in Go :  [OLD DSL FILES](examples/dsl/)
+
 # DRAGGINZ TODO 
 
 ## A class or module for ID?
@@ -33,3 +37,11 @@ Do I need one Trie for each Entity?  How is this going to scale, because some of
 of rows and some will be terabytes of data.
 
 Right now everything's stored in one Trie and that obviously has to change.
+
+## Big Files
+
+So the current design has about 185 tables, but that's a SQL data model so it includes join tables and enums and other such things
+that we wouldn't need within Motoko.  This could easily be over 300 tables by the time the game goes live.
+
+Go automatically includes all the files in one directory, and I *still* had to split it into subdirectories.  What is the best way
+to handle this in Motoko?  Don't really fancy one file with 20,000 lines, or even a massive list of includes.

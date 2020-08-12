@@ -10,19 +10,35 @@ module {
 
   // List of Entities
   public type Entity = {
-    #character: Character;
-    #concept:   Concept;
-    #player:    Player;
-    #prop:      Prop;
-    #quality:   Quality;
-    #rarity:    Rarity;
-    #resource:  Resource;
+    #alignment:  Alignment;
+    #atmosphere: Atmosphere;
+    #climate:    Climate;
+    #element:    Element;
+    #era:        Era;
+    #gender:     Gender;
+    #species:    Species;
+    #character:  Character;
+    #concept:    Concept;
+    #player:     Player;
+    #prop:       Prop;
+    #quality:    Quality;
+    #rarity:     Rarity;
+    #resource:   Resource;
     //.. and about 150 other ones I need to add
   };
 
   //
   // Entities
   //
+
+  // TO SORT @todo
+  public type Alignment = {name:Text};
+  public type Atmosphere = {name:Text};
+  public type Climate = {name:Text};
+  public type Element = {name:Text};
+  public type Era = {name:Text};
+  public type Gender = {name:Text};
+  public type Species = {name:Text};
 
   // Character
   public type Character = {
