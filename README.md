@@ -10,7 +10,13 @@ hashing
 Some entities require a UUID that the users have to respond with to "claim" the entity in the database.  This will eventually be
 encrypted somehow, but in the meantime how can I generate a random UUID?  Basically like uuid.NewV4() in Go.
 
+## Custom Types
 
+Instead of the name of a Character or Pet being Text, it needs to be a 20 character string that has specific rules on sanitisation
+and validation.  It should disallow 3 or more repeated characters, trim whitespace, and other rules.
+
+How do we create a template type, say "Name" or "PetName" and have these inherit from each other, ie. 
+PetName -> Name -> Text, each level adding in extra functionality.
 
 # ??? Questions ???
 
