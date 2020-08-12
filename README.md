@@ -2,7 +2,9 @@
 
 Here is an example of how we built the data model in Go :  [OLD DSL FILES](examples/dsl/)
 
-# DRAGGINZ TODO 
+---
+
+# ~~ DRAGGINZ TODO ~~
 
 ## A class or module for ID?
 
@@ -21,6 +23,8 @@ and validation.  It should disallow 3 or more repeated characters, trim whitespa
 
 How do we create a template type, say "Name" or "PetName" and have these inherit from each other, ie. 
 PetName -> Name -> Text, each level adding in extra functionality.
+
+---
 
 # ??? Questions ???
 
