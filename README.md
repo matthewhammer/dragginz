@@ -1,10 +1,27 @@
-# OLD DRAGGINZ 
+# What is Dragginz?
 
-Here is an example of how we built the data model in Go :  [OLD DSL FILES](examples/dsl/)
+Dragginz is a virtual fantasy world.  It's built by the users, but adheres to a strict style guide set by the
+Dragginz Team (currently 6 of us working on the project.)  It's a non profit venture that's owned by the community.
+All revenue made from the game will go directly back into maintenance and development costs.
+
+Our stack is currently Unity, SpatialOS/Improbable, and we're looking to replace everything else with DFinity.
+
+Currently we are attempting to assemble a giant data model (500+ entities) with validation and filtering/sanitisation
+rules.  It's imperative that all the data that builds this world is carefully curated and error checked.  Previously we
+used CockroachDB as our storage layer.
+
+The best explanation I can give for the project is an unholy cross between Minecraft, Neopets, WoW and Dwarf Fortress
+set in a very vertical, 3D Labyrinth/Dark Crystal type world.
 
 ---
 
-# ~~ DRAGGINZ TODO ~~
+# Legacy Dragginz (Go)
+
+Here is an example of how we built the data model in Go :  [OLD DSL FILES](examples/dsl/).
+
+---
+
+# ~~ TODO ~~
 
 ## A class or module for ID?
 
@@ -27,8 +44,6 @@ PetName -> Name -> Text, each level adding in extra functionality.
 ---
 
 # ??? Questions ???
-
-
 
 ## File Naming?
 

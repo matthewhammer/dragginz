@@ -6,12 +6,10 @@ import Entity "./entity"
 
 actor Database {
 
-// not sure how this works
-//
-  //public module ID {
-  //  public type Equal<ID> = (ID, ID) -> Bool;
-  //  public type Hash<ID> = (ID -> Hash.Hash);
- // };
+    public module ID {
+        public type Equal<ID> = (ID, ID) -> Bool;
+        public type Hash<ID> = (ID -> Hash.Hash);
+    };
 
     public type ID = Word32;
 
