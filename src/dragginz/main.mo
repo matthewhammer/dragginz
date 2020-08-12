@@ -6,19 +6,19 @@ import Entity "./entity"
 
 actor Database {
 
-    public module ID {
-        public type Equal<ID> = (ID, ID) -> Bool;
-        public type Hash<ID> = (ID -> Hash.Hash);
-    };
+  //public module ID {
+  //  public type Equal<ID> = (ID, ID) -> Bool;
+  //  public type Hash<ID> = (ID -> Hash.Hash);
+ // };
 
     public type ID = Word32;
 
-    public type Err = {
-        #invalidID;
-        #permissionDenied
-    };
+  //  public type Err = {
+    //    #invalidID;
+      //  #permissionDenied
+    //};
 
-    public type Res<X> = Result.Result<X, Err>;
+  //  public type Res<X> = Result.Result<X, Err>;
 
 
     // Data store
