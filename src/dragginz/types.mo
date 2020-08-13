@@ -21,6 +21,7 @@ module {
   public type UnityClass = Text;
   public type UUID = Text;
   public type Weighting = Nat;
+  public type Username = Text;
 
   //
   // Game Design Concepts

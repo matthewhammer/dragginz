@@ -88,16 +88,10 @@ the Pupil type in Motoko what's the best way to represent this as I'm not famili
 
 ## Types with Constructors?
 
-We can make a Types.String type for a field, but how could we do something like Types.String(20), where the field can take constructor arguments that can be used for validation, truncation etc.
-
-## Template vs Instance
-
-PetTemplate and Pet being the in-game instance of a Pet, or Pet being the template and PetInstance being the instance?  Is it possible to come up with a good naming convention?
+We can make a Types.String type for a field, but how could we do something like Types.String(20), where the field can take constructor arguments that can be used for validation, truncation etc.~~~~
 
 ## Fixtures
 
 Need a good way to instantiate data that's static and unchanging, such as the different levels of Rarity.  Could potentially tables like Rarity, AreaGuide, LengthGuide be stored in a different format.
-
-
 
 ~~---~~
