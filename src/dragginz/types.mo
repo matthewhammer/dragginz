@@ -18,7 +18,6 @@ module {
   public type EntityName  = Text;   // generic name for any entity
   public type Interval    = Nat;    // duration of time
   public type Series      = Nat; 
-  public type UnityClass  = Text;
   public type UUID        = Text;
   public type Weighting   = Nat;
   public type Username    = Text;
@@ -33,11 +32,12 @@ module {
   // Game Design Concepts
   //
   public type GameYear = Int;
-  public type Level = Nat;
-  public type Rank = Nat;
+  public type Level    = Nat;
+  public type Rank     = Nat;
 
   //
   // Physics
+  // Mostly like our world but with a little fantasy fudging thrown in
   // These will eventually have strict ranges and validation rules
   //
   public type Area        = Float;    // m^2,    0.001 to 1e6
@@ -72,6 +72,12 @@ module {
 
   // GameDate
   public type GameDate = {
+    year: Nat;
+    day:  Nat;
+  };
+
+  // GameInterval
+  public type GameInterval = {
     year: Nat;
     day:  Nat;
   };

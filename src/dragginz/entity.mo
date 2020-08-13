@@ -282,7 +282,7 @@ module {
   };
 
   // Chunk
-  // A chunk is a 10 metre cubed volume of the game world
+  // A chunk is a 10 meter cubed volume of the game world
   public type ChunkID = Types.ID;
   public type Chunk = {
     id:       ChunkID;
@@ -306,7 +306,7 @@ module {
 
   // Collider
   // A representation of a Collider within Unity
-  public type ColliderID       = Types.ID;
+  public type ColliderID = Types.ID;
   public type Collider = {
     id:            ColliderID;
     isTrigger:     Bool;
@@ -510,13 +510,14 @@ module {
   // Material
   public type MaterialID = Types.ID;
   public type Material = {
-    id:       MaterialID;
-    name:     Types.EntityName;
-    colour:   Types.Colour;
-    status:   Status;
-    mesh:     ?MeshID;
-    series:   ?Types.Series;
-    textures: [TextureID];
+    id:          MaterialID;
+    name:        Types.EntityName;
+    colour:      Types.Colour;
+    status:      Status;
+    mesh:        ?MeshID;
+    series:      ?Types.Series;
+    shader:      ?ShaderID;
+    textures:    [TextureID];
   };
 
   // Mesh
@@ -530,15 +531,53 @@ module {
     materials: [MaterialID];
   };
 
+  // MobImplementation
+  // The implementation of a Mobile OBject (player, monster, or NPC)
+  // including Models and Textures.
+  // 
+  // There can be many templates based on this Mob Implementation (MobT) with various
+  // size, clothes, and levels/roles, and other game design parameters.
+  //
+  // Examples:
+  //  Canopy Elf Male
+  //  Mimic
+  //  Black Cat
+  //  Purple Cat
+  //
+  public type MobImplementationID = Types.ID;
+  public type MobImplementation = {
+    id:          MobImplementationID;
+    name:        Types.EntityName;
+    description: Types.Description;
+    objectAttr:  ObjectAttr;
+    status:      Status;
+    series:      ?Types.Series;
+    concepts:    [ConceptID];
+  };
+
   // MobTemplate
-  // Template for a MObile Object.  This includes NPCs and Monsters
+  // Mobile OBject Template which includes implementation information plus
+  // game design parameters
+  //
+  // Examples:
+	//	Mimic King
+	//	Macavity the Purple Cat
+	//	Bob the Builder
+  //
   public type MobTemplateID = Types.ID;
   public type MobTemplate = {
-    id:       MobTemplateID;
-    name:     Types.EntityName;
-    icon:     IconID;
-    concepts: [ConceptID];
+    id:             MobTemplateID;
+    name:           Types.EntityName;
+    description:    Types.Description;
+    sizeModifier:   Types.Percent;
+    icon:           IconID;
+    implementation: MobImplementationID;
+    resource:       Resource;
+    status:         Status;
+    concepts:       [ConceptID];
+    tags:           [TagID];
   };
+
 
   // Model
   // The representation of a 3D Model as defined by Unity
@@ -551,14 +590,6 @@ module {
     volume:      ?Types.Volume;
     contributor: Contributor;
     meshes:      [MeshID];
-  };
-
-  // PhysicalAttr
-  // stores the attributes of anything that is represented in game as
-  // @todo - need a better name
-  public type ObjectID = Types.ID;
-  public type Object = {
-
   };
 
   // OpacityGuide
@@ -731,22 +762,17 @@ module {
   };
 
   // Shader
-  // i tried to combine two entities here, not sure if that's a good idea or even
-  // if it comes close to working
-  // THIS IS A TEST!!!
   public type ShaderID = Types.ID;
   public type Shader = {
-    #external: {
+    #unity: {
+      #normal: Text;
+    };
+    #asset: {
       id:           ShaderID; 
       asset:        Types.TODO;
       status:       Status;
       contributors: [Contributor];
       series:       ?Types.Series;
-    };
-    #internal: {
-      id:         ShaderID; 
-      name:       Types.EntityName;
-      unityClass: Types.UnityClass;
     };
   };
 
@@ -757,8 +783,8 @@ module {
     id:          SizeCategoryID;
     name:        Types.EntityName;
     description: Types.Description;
-    minSize:     Types.Distance;
-    maxSize:     Types.Distance;
+    minSize:     Types.Distance;     // size of longest dimension
+    maxSize:     Types.Distance;     // size of longest dimension
     icon:        IconID;
     resource:    Resource;
   };
@@ -798,8 +824,8 @@ module {
     id:         SoundFileID;
     name:       Types.EntityName;
     length:     Types.Interval;
-    lufs:       Int;  // -99 to 99
-    sampleRate: Int;  // readonly?
+    lufs:       Int;               // -99 to 99
+    sampleRate: Int;               // readonly? @todo
     asset:      Types.TODO;
     channel:    SoundChannel;
   };
@@ -811,9 +837,9 @@ module {
     id:          SoundLayerID;
     name:        Types.EntityName;
     delay:       Types.Interval;
-    level:       Float;              // 0 to 1
-    minDistance: Nat;                // 0 to 10
-    maxDistance: Nat;                // 0 to 10
+    level:       Float;               // 0 to 1
+    minDistance: Nat;                 // 0 to 10
+    maxDistance: Nat;                 // 0 to 10
     components:  [SoundComponentID];
   };
 
@@ -996,7 +1022,7 @@ module {
 
     // Inheritance Fields
     inheritAtmosphere: Bool;
-    inheritCliamte:    Bool;
+    inheritClimate:    Bool;
     inheritGeology:    Bool;
     inheritPopulation: Bool;
     inheritTheme:      Bool;
@@ -1012,13 +1038,12 @@ module {
     climate:           [ClimateID];
     geology:           [GeologyID];
     population:        [PopulationID];
-    theme:             [Theme];
+    theme:             [ThemeID];
   };
 
   //
   // Data Structures
   // reuseable components for the data model
-  //
   //
 
   // Ambience
@@ -1046,7 +1071,7 @@ module {
 
   // Cost
   public type Cost = {
-    currency:  Nat;
+    currency: Nat;
   };
 
   // Cover
@@ -1076,6 +1101,22 @@ module {
     template: MobTemplateID;
   };
 
+  // ObjectAttr
+  // stores the attributes of anything that is represented in game as
+  // a physical object
+  public type ObjectAttr = {
+    model: ModelID;
+    composition: [{
+      layer: {
+        #surface: Nat;
+        #core:    Nat;
+      };
+      weighting: Types.Weighting;
+      substance: SubstanceID;
+    }];
+    implementation: Types.TODO;
+  };
+
   // Prop
   public type Prop = {
     template: PropTemplateID;
@@ -1091,6 +1132,11 @@ module {
   // RequirementCharacter
   // The subset of requirements that correspond to the current Character
   public type RequirementCharacter = {
+    minRank:  ?Types.Rank;
+    maxRank:  ?Types.Rank;
+    minLevel: ?Types.Level;
+    maxLevel: ?Types.Level;
+    gender:   ?GenderID;
     classes:  [CharacterClassID];
     roles:    [RoleID];
     species:  [SpeciesID];
@@ -1099,6 +1145,9 @@ module {
   // RequirementPet
   // The subset of requirements that correspond to a Character's active Pet
   public type RequirementPet = {
+    minLevel: Types.Level;
+    maxLevel: Types.Level;
+    gender:   ?GenderID;
     elements: [Element];
     species:  [SpeciesID];
   };
@@ -1106,6 +1155,7 @@ module {
   // RequirementPlayer
   // The subset of requirements that correspond to the current Player
   public type RequirementPlayer = {
+    playedFor: Types.Interval;
   };
 
   // Resource
@@ -1137,7 +1187,7 @@ module {
 
   // RestrictionPet
   public type RestrictionPet = {
-    elements: [Element];
+    elements: [ElementID];
     species:  [SpeciesID];
   };
 
@@ -1174,8 +1224,8 @@ module {
   public type Status = {
     isLive:       Bool;
     killWithFire: Bool;
-    startTime:    Types.Time;
-    endTime:      Types.Time;
+    startTime:    ?Types.Time;
+    endTime:      ?Types.Time;
     startRelease: ?ReleaseID;
     endRelease:   ?ReleaseID;
   };
@@ -1200,6 +1250,7 @@ module {
   };
 
   // SoundChannel
+  // @todo identifiers with numbers?
   public type SoundChannel = {
     #twodotone:  Text;
     #fivedotone: Text;
@@ -1211,8 +1262,7 @@ module {
     #albedo:   Text;
     #normal:   Text;
     #specular: Text;
-  }
-
+  };
 
 };
  
