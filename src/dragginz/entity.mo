@@ -669,9 +669,16 @@ module {
   // PropTemplate
   public type PropTemplateID = Types.ID;
   public type PropTemplate = {
-    id:       PropTemplateID;
-    name:     Types.EntityName;
-    resource: Resource;
+    id:           PropTemplateID;
+    name:         Types.EntityName;
+    description:  Types.Description;
+    resource:     Resource;
+    status:       Status;
+    quality:      QualityID;
+    series:       ?Types.Series;
+    contributors: [Contributor];
+    concepts:     [ConceptID];
+    tags:         [TagID]
   };
   
   // Quality
