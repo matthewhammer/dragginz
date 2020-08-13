@@ -1,17 +1,14 @@
 # What is Dragginz?
 
-Dragginz is a virtual fantasy world.  It's built by the users, but adheres to a strict style guide set by the
-Dragginz Team (currently 6 of us working on the project.)  It's a non profit venture that's owned by the community.
+Dragginz is a virtual fantasy world.  It's built by the users, but adheres to a strict style guide set by the Dragginz Team (currently 6 of us working on the project.)  It's a non profit venture that's owned by the community.
 All revenue made from the game will go directly back into maintenance and development costs.
 
 Our stack is currently Unity, SpatialOS/Improbable, and we're looking to replace everything else with DFinity.
 
-Currently we are attempting to assemble a giant data model (500+ entities) with validation and filtering/sanitisation
-rules.  It's imperative that all the data that builds this world is carefully curated and error checked.  Previously we
+Currently we are attempting to assemble a giant data model (500+ entities) with validation and filtering/sanitisation rules.  It's imperative that all the data that builds this world is carefully curated and error checked.  Previously we
 used CockroachDB as our storage layer.
 
-The best explanation I can give for the project is an unholy cross between Minecraft, Neopets, WoW and Dwarf Fortress
-set in a very vertical, 3D Labyrinth/Dark Crystal type world.
+The best explanation I can give for the project is an unholy cross between Minecraft, Neopets, WoW and Dwarf Fortressset in a very vertical, 3D Labyrinth/Dark Crystal type world.
 
 ---
 
@@ -26,8 +23,7 @@ auto-formatting tools for Motoko.
 
 ## A class or module for ID?
 
-Just like in https://github.com/matthewhammer/motoko-crud/blob/master/src/Database.mo it should probably do a lot more, like actually
-hashing
+Just like in https://github.com/matthewhammer/motoko-crud/blob/master/src/Database.mo it should probably do a lot more, like actually hashing the ID.
 
 ## Pseudorandom UUIDv4 generation
 
@@ -73,12 +69,11 @@ to handle this in Motoko?  Don't really fancy one file with 20,000 lines, or eve
 
 ## Reserved Words
 
-We have an Entity called Class.  This was fine in Go because it was upper case, but we're using #class as an identifier which
+We have an Entity called Class.  This was fine in Go because it was upper case, but we're using #class as an identifier which is probably a bad idea.  Any way around this?
 
 ## ID within Entity
 
-Is there any need to store the ID inside an entity, potentially duplicating data because the ID is the key used in the map.  However
-the key could be a hash, so I guess we should.
+Is there any need to store the ID inside an entity, potentially duplicating data because the ID is the key used in the map.  However the key could be a hash, so I guess we should.
 
 ## Class Inheritance
 
@@ -93,37 +88,16 @@ the Pupil type in Motoko what's the best way to represent this as I'm not famili
 
 ## Types with Constructors?
 
-We can make a Types.String type for a field, but how could we do something like Types.String(20), where the field can take constructor
-arguments that can be used for validation, truncation etc.
+We can make a Types.String type for a field, but how could we do something like Types.String(20), where the field can take constructor arguments that can be used for validation, truncation etc.
 
 ## Template vs Instance
 
-PetTemplate and Pet being the in-game instance of a Pet, or Pet being the template and PetInstance being the instance?  Is it possible
-to come up with a good naming convention?
+PetTemplate and Pet being the in-game instance of a Pet, or Pet being the template and PetInstance being the instance?  Is it possible to come up with a good naming convention?
 
 ## Fixtures
 
-Need a good way to instantiate data that's static and unchanging, such as the different levels of Rarity.  Could potentially tables
-like Rarity, AreaGuide, LengthGuide be stored in a different format?
+Need a good way to instantiate data that's static and unchanging, such as the different levels of Rarity.  Could potentially tables like Rarity, AreaGuide, LengthGuide be stored in a different format.
 
-## Inline Declaration of Types
 
-If a type has a subtype, like with the "Tuples" question above, can we declare that inline or do you need to have a separate type statement, something like
 
-```
-  public type PopulationID = Types.ID;
-  public type Population = {
-    id:           PopulationID;
-    name:         Types.EntityName;
-    description:  Types.Description;
-    icon:         IconID;
-    resource:     Resource;
-    tags:         [TagID];
-    demographics:  {
-      weighting: Types.Weighting;
-      species:   SpeciesID;
-      gender:    ?GenderID;
-
-    };
-  };
-```
+~~---~~

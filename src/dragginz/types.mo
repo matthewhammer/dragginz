@@ -13,10 +13,11 @@ module {
   // here we want to define Name as a Text string, but it
   // also has special rules on validation and sanitisation
   //
-  public type EntityName = Text;  // generic name for any entity
-  public type Description = Text;
-  public type Level = Nat;
+  public type ChunkCoord = Int;
   public type Class = Text;
+  public type Description = Text;
+  public type EntityName = Text;  // generic name for any entity
+  public type Level = Nat;
   public type Series = Nat;
   public type UUID = Text;
   public type Weighting = Nat;

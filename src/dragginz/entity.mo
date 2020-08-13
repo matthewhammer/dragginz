@@ -15,6 +15,10 @@ module {
     #AssetBundle:         AssetBundle;
     #Atmosphere:          Atmosphere;
     #Biome:               Biome;
+    #BuildProject:        BuildProject;
+    #BuildSubmission:     BuildSubmission;
+    #BuildTask:           BuildTask;
+    #BuildTemplate:       BuildTemplate;
     #Character:           Character;
     #CharacterClass:      CharacterClass;
     #Chunk:               Chunk;
@@ -166,6 +170,10 @@ module {
     id:          AtmosphereID;
     name:        Types.EntityName;
     description: Types.Description;
+    icon:        IconID;
+    resource:    Resource;
+    tags:        [TagID];
+    substances:  [SubstanceID];
   };
 
   // Biome
@@ -183,6 +191,40 @@ module {
     geology:     [GeologyID];
   };
 
+  // BuildProject
+  public type BuildProjectID = Types.ID;
+  public type BuildProject = {
+    id:          BuildProjectID;
+    name:        Types.EntityName;
+    description: Types.Description;
+    status:      BuildStatus;
+    team:        TeamID;
+    originChunk: ChunkID;
+    chunks:      [{
+      x:    Types.ChunkCoord;
+      y:    Types.ChunkCoord;
+      z:    Types.ChunkCoord;
+      data: ChunkData;
+    }];
+  };
+
+  // BuildSubmission
+  public type BuildSubmissionID = Types.ID;
+  public type BuildSubmission = {
+    id: BuildSubmissionID;
+  };
+
+  // BuildSubmission
+  public type BuildTaskID = Types.ID;
+  public type BuildTask = {
+    id: BuildTaskID;
+  };
+
+  // BuildTemplate
+  public type BuildTemplateID = Types.ID;
+  public type BuildTemplate = {
+    id: BuildTemplateID;
+  };
 
   // Character
   public type CharacterID = Types.ID;
@@ -214,9 +256,9 @@ module {
   public type ChunkID = Types.ID;
   public type Chunk = {
     id:       ChunkID;
-    x:        Int;
-    y:        Int;
-    z:        Int;
+    x:        Types.ChunkCoord;
+    y:        Types.ChunkCoord;
+    z:        Types.ChunkCoord;
     contents: ChunkData;
   };
 
@@ -504,7 +546,7 @@ module {
   };
 
   // Population
-  // 
+  // A Zone can have many Populations
   public type PopulationID = Types.ID;
   public type Population = {
     id:           PopulationID;
@@ -513,7 +555,11 @@ module {
     icon:         IconID;
     resource:     Resource;
     tags:         [TagID];
-    demographics: [PopulationDemographic];
+    demographics: [{
+      weighting: Types.Weighting;
+      species:   SpeciesID;
+      gender:    ?GenderID;
+    }];
   };
 
   // Prop
@@ -894,7 +940,6 @@ module {
     geology:           [GeologyID];
     population:        [PopulationID];
     theme:             [Theme];
-
   };
 
   //
@@ -952,13 +997,6 @@ module {
     mob:  MobID;
   };
 
-  // PopulationDemographic
-  public type PopulationDemographic = {
-    weighting: Types.Weighting;
-    species:   SpeciesID;
-    gender:    ?GenderID;
-  };
-  
   // PropInstance
   // @todo need a better naming convention
   public type PropInstance = {
@@ -1063,6 +1101,12 @@ module {
     #x:  Text;
     #y:  Text;
     #z:  Text;
+  };
+
+  // BuildStatus
+  // a list of status codes used by BuildStatus
+  public type BuildStatus = {
+    #approved: Text;
   };
 
   // SoundChannel
