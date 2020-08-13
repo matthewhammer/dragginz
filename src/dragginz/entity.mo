@@ -575,7 +575,7 @@ module {
   public type PetID = Types.ID;
   public type Pet = {
     id:          PetID;
-    name:        Types.TODO;
+    name:        Types.TODO;   // pet names are subject to extreme validation
     species:     SpeciesID;
     gender:      Gender;
   };
@@ -687,7 +687,7 @@ module {
     id:          ReleaseID;
     name:        Types.EntityName;
     description: Types.Description;
-    startTime:   Types.TODO;
+    startTime:   Types.Time;
     icon:        IconID;
   };
 
@@ -810,10 +810,10 @@ module {
   public type SoundLayer = {
     id:          SoundLayerID;
     name:        Types.EntityName;
-    delay:       Types.TODO;
-    level:       Types.TODO;
-    minDistance: Nat;  // 0 to 10
-    maxDistance: Nat;  // 0 to 10
+    delay:       Types.Interval;
+    level:       Float;              // 0 to 1
+    minDistance: Nat;                // 0 to 10
+    maxDistance: Nat;                // 0 to 10
     components:  [SoundComponentID];
   };
 
@@ -835,7 +835,7 @@ module {
   public type SoundVariant = {
     id:           SoundVariantID;
     name:         Types.EntityName;
-    playbackRate: Types.TODO;
+    playbackRate: Nat;              // 0 to 5
     bypassReverb: Bool;
     file:         [SoundFileID];
     soundLoop:    ?SoundLoop;
@@ -1033,7 +1033,7 @@ module {
   
   // Cooldown
   public type Cooldown = {
-    interval: Types.TODO;
+    interval: Types.Interval;
     uses:     Nat;  // 1 to 20
     rolling:  Bool;
   };
@@ -1113,7 +1113,7 @@ module {
   // and when it was discovered, and the secret key used to unlock it
   public type Resource = {
     secret:         Types.UUID;
-    claimTime:      Types.TODO;
+    claimTime:      Types.Time;
     claimChunk:     ?ChunkID;
     claimPet:       ?PetID;
     claimPlayer:    ?PlayerID;
@@ -1174,8 +1174,8 @@ module {
   public type Status = {
     isLive:       Bool;
     killWithFire: Bool;
-    startTime:    Types.TODO;
-    endTime:      Types.TODO;
+    startTime:    Types.Time;
+    endTime:      Types.Time;
     startRelease: ?ReleaseID;
     endRelease:   ?ReleaseID;
   };
@@ -1186,7 +1186,7 @@ module {
 
   // Axis
   // A designator for a cartesian coordinate system, optimised for a four-dimensional manifold
-  // with three dimensions of space, but ignoring relativistic effects
+  // with three spatial dimensions.  For the sake of simplicity, relativistic effects are ignored 
   public type Axis = {
     #x:  Text;
     #y:  Text;

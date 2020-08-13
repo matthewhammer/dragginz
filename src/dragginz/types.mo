@@ -13,15 +13,21 @@ module {
   // here we want to define Name as a Text string, but it
   // also has special rules on validation and sanitisation
   //
-  public type ChunkCoord = Int;
+  public type ChunkCoord  = Int;
   public type Description = Text;
-  public type EntityName = Text;  // generic name for any entity
-  public type Interval = Nat;     // duration of time
-  public type Series = Nat; 
-  public type UnityClass = Text;
-  public type UUID = Text;
-  public type Weighting = Nat;
-  public type Username = Text;
+  public type EntityName  = Text;   // generic name for any entity
+  public type Interval    = Nat;    // duration of time
+  public type Series      = Nat; 
+  public type UnityClass  = Text;
+  public type UUID        = Text;
+  public type Weighting   = Nat;
+  public type Username    = Text;
+
+  //
+  // Motoko Wrapped Types
+  // update these as the base classes change
+  //
+  public type Time = Int;
 
   //
   // Game Design Concepts
