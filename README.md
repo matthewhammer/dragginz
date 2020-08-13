@@ -15,9 +15,10 @@ set in a very vertical, 3D Labyrinth/Dark Crystal type world.
 
 ---
 
-# Legacy Dragginz (Go)
+# Notes
 
-Here is an example of how we built the data model in Go :  [OLD DSL FILES](examples/dsl/).
+Don't worry about code formatting right now, it may not be "idiomatic" because VSCode doesn't seem to have any nice
+auto-formatting tools for Motoko.
 
 ---
 
@@ -40,6 +41,11 @@ and validation.  It should disallow 3 or more repeated characters, trim whitespa
 
 How do we create a template type, say "Name" or "PetName" and have these inherit from each other, ie. 
 PetName -> Name -> Text, each level adding in extra functionality.
+
+## Entity Metadata
+
+How do we separate the fields of an entity from metadata?  Is it a case of Rarity { RarityData, Metadata }, how should that be set up
+and how should the actual values be initialised?
 
 ---
 
@@ -73,3 +79,29 @@ We have an Entity called Class.  This was fine in Go because it was upper case, 
 
 Is there any need to store the ID inside an entity, potentially duplicating data because the ID is the key used in the map.  However
 the key could be a hash, so I guess we should.
+
+## Class Inheritance
+
+Is there composition or inheritance?  So if I've got 180 entity types and wanted each one to have a Created and Updated timestamp
+field, does it have to be added manually to each type?
+
+## Tuples
+
+Let's say you've got a many to many relation where Pupil )----( Class, and then we wanted to add a separate "Grade" into each row of
+the relationship.  In SQL we could have a table ( pupil_id, class_id, grade ) with a PK on pupil_id and class_id.  When defining
+the Pupil type in Motoko what's the best way to represent this as I'm not familiar with the nuances of the language or even the basics.
+
+## Types with Constructors?
+
+We can make a Types.String type for a field, but how could we do something like Types.String(20), where the field can take constructor
+arguments that can be used for validation, truncation etc.
+
+## Tmplate vs Instance
+
+PetTemplate and Pet being the in-game instance of a Pet, or Pet being the template and PetInstance being the instance?  Is it possible
+to come up with a good naming convention?
+
+## Fixtures
+
+Need a good way to instantiate data that's static and unchanging, such as the different levels of Rarity.  Could potentially tables
+like Rarity, AreaGuide, LengthGuide be stored in a different format?

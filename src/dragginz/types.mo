@@ -3,7 +3,7 @@ import Result "mo:base/Result";
 
 module {
 
-  // Special
+  // Special, ie. not sure if this should actually be here
   public type ID = Word32;
 
   // TODO
@@ -20,6 +20,7 @@ module {
   public type Series = Nat;
   public type UUID = Text;
   public type Weighting = Nat;
+  public type Interval = Nat;
 
   //
   // Compound Types
@@ -40,9 +41,12 @@ module {
   };
 
   // Quaternion
+  // A data structure used by Unity measure the rotation of an object in three dimensions
   public type Quaternion = {
-    foo: Float;
-    bar: Float;
+    w: Float;
+    x: Float;
+    y: Float;
+    z: Float;
   };
 
   // Vector
@@ -56,10 +60,22 @@ module {
   // Physics
   // These will eventually have strict ranges and validation rules
   //
-  public type Density   = Float;
-  public type Distance  = Float; // @todo, 0.001m to 10^9m?
-  public type Resonance = Nat;
-  public type Volume    = Nat;
+  public type Area        = Float;    // m^2,    0.001 to 1e6
+  public type Density     = Float;    // kg/m^3  0.001 to 1e6
+  public type Distance    = Float;    // m       0.001 to 500
+  public type Friction    = Percent;  // %       0 to 100
+  public type Hardness    = Nat;      // H       1 to 15 (Mohs + 5 extra fantasy levels)
+  public type Mass        = Float;    // kg      0.001 to 1e6
+  public type Opacity     = Percent;  // %       0 to 100
+  public type Resonance   = Percent;  // %       0 to 100 (fantasy world concept)
+  public type Temperature = Nat;      // °C      -200 to 10,000      
+  public type Velocity    = Float;    // m/s     0.01 to 500 
+  public type Volume      = Float;    // m^3     0.001 to 1e6
+
+  //
+  // Game Concepts
+  //
+  public type GameYear = Int;
 
   //
   // Maths
