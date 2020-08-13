@@ -27,7 +27,7 @@ auto-formatting tools for Motoko.
 ## A class or module for ID?
 
 Just like in https://github.com/matthewhammer/motoko-crud/blob/master/src/Database.mo it should probably do a lot more, like actually
-hashing 
+hashing
 
 ## Pseudorandom UUIDv4 generation
 
@@ -39,7 +39,7 @@ encrypted somehow, but in the meantime how can I generate a random UUID?  Basica
 Instead of the name of a Character or Pet being Text, it needs to be a 20 character string that has specific rules on sanitisation
 and validation.  It should disallow 3 or more repeated characters, trim whitespace, and other rules.
 
-How do we create a template type, say "Name" or "PetName" and have these inherit from each other, ie. 
+How do we create a template type, say "Name" or "PetName" and have these inherit from each other, ie.
 PetName -> Name -> Text, each level adding in extra functionality.
 
 ## Entity Metadata
@@ -105,3 +105,25 @@ to come up with a good naming convention?
 
 Need a good way to instantiate data that's static and unchanging, such as the different levels of Rarity.  Could potentially tables
 like Rarity, AreaGuide, LengthGuide be stored in a different format?
+
+## Inline Declaration of Types
+
+If a type has a subtype, like with the "Tuples" question above, can we declare that inline or do you need to have a separate type statement, something like
+
+```
+  public type PopulationID = Types.ID;
+  public type Population = {
+    id:           PopulationID;
+    name:         Types.EntityName;
+    description:  Types.Description;
+    icon:         IconID;
+    resource:     Resource;
+    tags:         [TagID];
+    demographics:  {
+      weighting: Types.Weighting;
+      species:   SpeciesID;
+      gender:    ?GenderID;
+
+    };
+  };
+```
