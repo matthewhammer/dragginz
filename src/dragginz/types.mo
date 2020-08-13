@@ -14,14 +14,42 @@ module {
   // also has special rules on validation and sanitisation
   //
   public type ChunkCoord = Int;
-  public type Class = Text;
   public type Description = Text;
   public type EntityName = Text;  // generic name for any entity
-  public type Level = Nat;
-  public type Series = Nat;
+  public type Interval = Nat;     // duration of time
+  public type Series = Nat; 
+  public type UnityClass = Text;
   public type UUID = Text;
   public type Weighting = Nat;
-  public type Interval = Nat;
+
+  //
+  // Game Design Concepts
+  //
+  public type GameYear = Int;
+  public type Level = Nat;
+  public type Rank = Nat;
+
+  //
+  // Physics
+  // These will eventually have strict ranges and validation rules
+  //
+  public type Area        = Float;    // m^2,    0.001 to 1e6
+  public type Density     = Float;    // kg/m^3  0.001 to 1e6
+  public type Distance    = Float;    // m       0.001 to 500
+  public type Friction    = Percent;  // %       0 to 100
+  public type Hardness    = Nat;      // H       1 to 15 (Mohs + 5 extra fantasy levels)
+  public type Mass        = Float;    // kg      0.001 to 1e6
+  public type Opacity     = Percent;  // %       0 to 100
+  public type Resonance   = Percent;  // %       0 to 100 (fantasy world concept)
+  public type Temperature = Nat;      // °C      -200 to 10,000      
+  public type Velocity    = Float;    // m/s     0.01 to 500 
+  public type Volume      = Float;    // m^3     0.001 to 1e6
+
+  //
+  // MATHS
+  // Mathematical Anti-Telharsic Harfatum Septonin 
+  //
+  public type Percent = Nat;
 
   //
   // Compound Types
@@ -56,32 +84,5 @@ module {
     y: Float;
     z: Float;
   };
-
-  //
-  // Physics
-  // These will eventually have strict ranges and validation rules
-  //
-  public type Area        = Float;    // m^2,    0.001 to 1e6
-  public type Density     = Float;    // kg/m^3  0.001 to 1e6
-  public type Distance    = Float;    // m       0.001 to 500
-  public type Friction    = Percent;  // %       0 to 100
-  public type Hardness    = Nat;      // H       1 to 15 (Mohs + 5 extra fantasy levels)
-  public type Mass        = Float;    // kg      0.001 to 1e6
-  public type Opacity     = Percent;  // %       0 to 100
-  public type Resonance   = Percent;  // %       0 to 100 (fantasy world concept)
-  public type Temperature = Nat;      // °C      -200 to 10,000      
-  public type Velocity    = Float;    // m/s     0.01 to 500 
-  public type Volume      = Float;    // m^3     0.001 to 1e6
-
-  //
-  // Game Concepts
-  //
-  public type GameYear = Int;
-
-  //
-  // Maths
-  //
-  public type Percent = Nat;
-
 };
 

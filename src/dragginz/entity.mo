@@ -46,6 +46,7 @@ module {
     #Model:               Model;
     #OpacityGuide:        OpacityGuide;
     #Pet:                 Pet;
+    #PetStage:            PetStage;
     #Player:              Player;
     #Population:          Population;
     #Prop:                Prop;
@@ -127,7 +128,7 @@ module {
     icon:         IconID;
     resource:     Resource;
     status:       Status;
-    series:       ?Types.Series;
+    series:       ?Types.Series; 
     concepts:     [ConceptID];
     tags:         [TagID];
     contributors: [Contributor];
@@ -201,10 +202,10 @@ module {
     team:        TeamID;
     originChunk: ChunkID;
     chunks:      [{
-      x:    Types.ChunkCoord;
-      y:    Types.ChunkCoord;
-      z:    Types.ChunkCoord;
-      data: ChunkData;
+      offsetX:    Types.ChunkCoord;
+      offsetY:    Types.ChunkCoord;
+      offsetZ:    Types.ChunkCoord;
+      data:       ChunkData;
     }];
   };
 
@@ -438,10 +439,23 @@ module {
   // The definition of an Item, not the in-game instance of that Item
   public type ItemID = Types.ID;
   public type Item = {
-    id:      ItemID;
-    name:    Types.EntityName;
-    icon:    IconID;
-    charges: [RNG];
+    id:       ItemID;
+    name:     Types.EntityName;
+    icon:     IconID;
+    rarity:   RarityID;
+    quality:  QualityID;
+    resource: Resource;
+    eatAction: ?{
+      foodBonus: Types.TODO;
+    };
+    wearAction: ?{
+    };
+    abilities: [{
+      ability:  AbilityID;
+      cooldown: Cooldown;
+      charges:  [RNG];
+    }];
+    concepts: [ConceptID];
   };
 
   // LengthGuide
@@ -534,6 +548,21 @@ module {
     character: CharacterID;
     species:   SpeciesID;
     gender:    Gender;
+  };
+
+  // PetStage
+  public type PetStageID = Types.ID;
+  public type PetStage = {
+    id:             PetStageID;
+    name:           Types.EntityName;
+    description:    Types.Description;
+    rank:           Types.Rank;
+    baseLevel:      Types.Level;
+    progressLevels: Nat;   // 1 to 20
+    resource:       Resource;
+    costs:          [Cost];
+    requirements:   [Requirement];
+    restrictions:   [Restriction];
   };
 
   // Player
@@ -671,9 +700,9 @@ module {
       series:       ?Types.Series;
     };
     #internal: {
-      id:         ShaderID;
+      id:         ShaderID; 
       name:       Types.EntityName;
-      unityClass: Types.Class;
+      unityClass: Types.UnityClass;
     };
   };
 
