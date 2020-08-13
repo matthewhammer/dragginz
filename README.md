@@ -96,7 +96,7 @@ the Pupil type in Motoko what's the best way to represent this as I'm not famili
 We can make a Types.String type for a field, but how could we do something like Types.String(20), where the field can take constructor
 arguments that can be used for validation, truncation etc.
 
-## Tmplate vs Instance
+## Template vs Instance
 
 PetTemplate and Pet being the in-game instance of a Pet, or Pet being the template and PetInstance being the instance?  Is it possible
 to come up with a good naming convention?

@@ -1065,13 +1065,6 @@ module {
     #z:  Text;
   };
 
-  // RealGender
-  public type RealGender = {
-    #male:    Text;
-    #female:  Text;
-    #neither: Text;
-  };
-
   // SoundChannel
   public type SoundChannel = {
     #twodotone:  Text;
